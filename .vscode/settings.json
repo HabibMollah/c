@@ -1,0 +1,8 @@
+{
+  "files.associations": {
+    "chrono": "c",
+    "cmath": "c",
+    "locale": "c",
+    "new": "c"
+  }
+}
