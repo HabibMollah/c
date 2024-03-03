@@ -1,0 +1,10 @@
+---
+triple:          'arm64-apple-darwin'
+binary-path:     '/Users/habib/repos/c-playground/wordle/wordle'
+relocations:
+  - { offsetInCU: 0x26, offset: 0x26, size: 0x8, addend: 0x0, symName: _main, symObjAddr: 0x0, symBinAddr: 0x100003934, symSize: 0x474 }
+  - { offsetInCU: 0x42, offset: 0x42, size: 0x8, addend: 0x0, symName: _main, symObjAddr: 0x0, symBinAddr: 0x100003934, symSize: 0x474 }
+  - { offsetInCU: 0x164, offset: 0x164, size: 0x8, addend: 0x0, symName: _get_guess, symObjAddr: 0x474, symBinAddr: 0x100003DA8, symSize: 0x20 }
+  - { offsetInCU: 0x19A, offset: 0x19A, size: 0x8, addend: 0x0, symName: _check_word, symObjAddr: 0x494, symBinAddr: 0x100003DC8, symSize: 0x24 }
+  - { offsetInCU: 0x1FA, offset: 0x1FA, size: 0x8, addend: 0x0, symName: _print_word, symObjAddr: 0x4B8, symBinAddr: 0x100003DEC, symSize: 0x30 }
+...
