@@ -91,7 +91,8 @@ int main(int argc, string argv[])
         }
 
         // Calculate score for the guess
-        int score = check_word(guess, wordsize, status, choice);
+        int score = check_word(guess, wordsize, status, "about");
+        printf("score: %d\n", score);
 
         printf("Guess %i: ", i + 1);
 
@@ -133,6 +134,28 @@ int check_word(string guess, int wordsize, int status[], string choice)
 
     // compare guess to choice and score points as appropriate, storing points in status
     // TODO #5
+    for (int i = 0; i < wordsize; i++)
+    {
+        if (guess[i] == choice[i])
+        {
+            status[i] = 2;
+        }
+        else
+        {
+            for (int j = 0; j < wordsize; j++)
+            {
+                if (guess[j] == choice[i])
+                {
+                    status[j] = 1;
+                }
+            }
+        }
+    }
+
+    for (int i = 0; i < wordsize; i++)
+    {
+        score += status[i];
+    }
 
     // HINTS
     // iterate over each letter of the guess
