@@ -91,8 +91,7 @@ int main(int argc, string argv[])
         }
 
         // Calculate score for the guess
-        int score = check_word(guess, wordsize, status, "about");
-        printf("score: %d\n", score);
+        int score = check_word(guess, wordsize, status, choice);
 
         printf("Guess %i: ", i + 1);
 
@@ -172,6 +171,18 @@ void print_word(string guess, int wordsize, int status[])
 {
     // print word character-for-character with correct color coding, then reset terminal font to normal
     // TODO #6
+    for (int i = 0; i < wordsize; i++)
+    {
+        string color = RED;
+        if (status[i] == 2)
+            color = GREEN;
+        if (status[i] == 1)
+            color = YELLOW;
+
+        printf("%s"
+               "%c" RESET,
+               color, guess[i]);
+    }
 
     printf("\n");
     return;
