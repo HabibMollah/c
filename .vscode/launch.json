@@ -1,18 +1,26 @@
 {
+  "version": "0.2.0",
   "configurations": [
     {
-      "name": "C/C++: gcc build and debug active file",
-      "type": "cppdbg",
+      "name": "(lldb) Launch", // Configuration name
+      "type": "cppdbg", // Type of debugger to use
       "request": "launch",
-      "program": "${fileDirname}/${fileBasenameNoExtension}",
-      "args": ["5"],
-      "stopAtEntry": false,
-      "cwd": "${fileDirname}",
+      "program": "${workspaceFolder}/${fileBasenameNoExtension}", // Executable program to debug
+      "args": [], // Command line arguments
+      "stopAtEntry": false, // Stop execution after launch
+      "cwd": "${workspaceFolder}", // Current working directory
       "environment": [],
-      "externalConsole": false,
+      "externalConsole": true, // Use internal console
+      "internalConsoleOptions": "neverOpen",
       "MIMode": "lldb",
-      "preLaunchTask": "C/C++: gcc build active file"
+      "setupCommands": [
+        {
+          "description": "Enable pretty-printing for lldb",
+          "text": "-enable-pretty-printing",
+          "ignoreFailures": true
+        }
+      ],
+      "preLaunchTask": "build" // Task to run before launch
     }
-  ],
-  "version": "2.0.0"
+  ]
 }
