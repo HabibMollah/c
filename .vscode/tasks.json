@@ -7,10 +7,10 @@
       "command": "gcc",
       "args": [
         "-g", // Include debug symbols
-        "${fileBasename}", // Source file(s)
+        "atoi/${fileBasename}", // Source file(s)
         "cs50.c",
         "-o", // Output file
-        "${fileBasenameNoExtension}" // Output file name
+        "atoi/${fileBasenameNoExtension}" // Output file name
       ],
       "group": {
         "kind": "build",

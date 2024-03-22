@@ -5,7 +5,7 @@
       "name": "(lldb) Launch", // Configuration name
       "type": "cppdbg", // Type of debugger to use
       "request": "launch",
-      "program": "${workspaceFolder}/${fileBasenameNoExtension}", // Executable program to debug
+      "program": "${workspaceFolder}/atoi/${fileBasenameNoExtension}", // Executable program to debug
       "args": [], // Command line arguments
       "stopAtEntry": false, // Stop execution after launch
       "cwd": "${workspaceFolder}", // Current working directory
