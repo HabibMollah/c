@@ -64,18 +64,18 @@ void sort_cities(void)
     // Add your code here
     for (int i = 0; i < NUM_CITIES; i++)
     {
-        int swaps = 0;
-        for (int j = 0; j < NUM_CITIES - 1; j++)
+        avg_temp current_max = temps[i];
+        int current_max_index = i;
+        for (int j = i; j < NUM_CITIES; j++)
         {
-            if (temps[j].temp < temps[j + 1].temp)
+            if (temps[j].temp > current_max.temp)
             {
-                avg_temp temporary = temps[j];
-                temps[j] = temps[j + 1];
-                temps[j + 1] = temporary;
-                swaps++;
+                current_max = temps[j];
+                current_max_index = j;
             }
         }
-        if (swaps == 0)
-            break;
+        avg_temp temporary = temps[i];
+        temps[i] = current_max;
+        temps[current_max_index] = temporary;
     }
 }
