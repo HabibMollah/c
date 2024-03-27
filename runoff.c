@@ -97,6 +97,7 @@ int main(int argc, string argv[])
 
         // Eliminate last-place candidates
         int min = find_min();
+        printf("MIN_VOTE: %d\n", min);
         bool tie = is_tie(min);
 
         // If tie, everyone wins
@@ -179,7 +180,13 @@ bool print_winner(void)
 int find_min(void)
 {
     // TODO
-    return 0;
+    int min = candidates[0].votes;
+    for (int i = 0; i < candidate_count; i++)
+    {
+        if (!candidates[i].eliminated && candidates[i].votes < min)
+            min = candidates[i].votes;
+    }
+    return min;
 }
 
 // Return true if the election is tied between all candidates, false otherwise
