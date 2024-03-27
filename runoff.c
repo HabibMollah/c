@@ -163,6 +163,15 @@ void tabulate(void)
 bool print_winner(void)
 {
     // TODO
+    int vote_majority = (voter_count / 2);
+    for (int i = 0; i < candidate_count; i++)
+    {
+        if (!candidates[i].eliminated && candidates[i].votes > vote_majority)
+        {
+            printf("%s\n", candidates[i].name);
+            return true;
+        }
+    }
     return false;
 }
 
