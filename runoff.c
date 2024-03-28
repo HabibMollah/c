@@ -180,9 +180,20 @@ bool print_winner(void)
 int find_min(void)
 {
     // TODO
-    int min = candidates[0].votes;
+    int min;
     for (int i = 0; i < candidate_count; i++)
     {
+        if (!candidates[i].eliminated)
+        {
+            // Store the first candidate's votes who is not eliminated
+            min = candidates[i].votes;
+            break;
+        }
+    }
+
+    for (int i = 0; i < candidate_count; i++)
+    {
+        // Loop over the array to find the lowest
         if (!candidates[i].eliminated && candidates[i].votes < min)
             min = candidates[i].votes;
     }
