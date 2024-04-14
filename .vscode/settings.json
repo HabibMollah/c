@@ -1,5 +1,20 @@
 {
   "files.associations": {
-    "strings.h": "c"
+    "strings.h": "c",
+    "__bit_reference": "c",
+    "concepts": "c",
+    "ios": "c",
+    "istream": "c",
+    "iterator": "c",
+    "memory": "c",
+    "mutex": "c",
+    "ostream": "c",
+    "sstream": "c",
+    "streambuf": "c",
+    "string": "c",
+    "string_view": "c",
+    "tuple": "c",
+    "utility": "c",
+    "variant": "c"
   }
 }
