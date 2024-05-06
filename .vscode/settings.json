@@ -15,6 +15,9 @@
     "string_view": "c",
     "tuple": "c",
     "utility": "c",
-    "variant": "c"
+    "variant": "c",
+    "cstdlib": "c",
+    "locale": "c",
+    "new": "c"
   }
 }
