@@ -58,12 +58,11 @@ void reflect(int height, int width, RGBTRIPLE image[height][width])
 {
     for (int i = 0; i < height; i++)
     {
-        for (int j = 0; j < width; j++)
+        for (int j = 0; j < (width / 2); j++)
         {
             BYTE buffer_red = image[i][j].rgbtRed;
             BYTE buffer_green = image[i][j].rgbtGreen;
             BYTE buffer_blue = image[i][j].rgbtBlue;
-            printf("BEFORE buffer_red: %i, left red: %i, right red: %i\n", buffer_red, image[i][j].rgbtRed, image[i][width - (j + 1)].rgbtRed);
 
             image[i][j].rgbtRed = image[i][width - (j + 1)].rgbtRed;
             image[i][j].rgbtGreen = image[i][width - (j + 1)].rgbtGreen;
@@ -72,7 +71,6 @@ void reflect(int height, int width, RGBTRIPLE image[height][width])
             image[i][width - (j + 1)].rgbtRed = buffer_red;
             image[i][width - (j + 1)].rgbtGreen = buffer_green;
             image[i][width - (j + 1)].rgbtBlue = buffer_blue;
-            printf("AFTER buffer_red: %i, left red: %i, right red: %i\n", buffer_red, image[i][j].rgbtRed, image[i][width - (j + 1)].rgbtRed);
         }
     }
 
@@ -82,5 +80,47 @@ void reflect(int height, int width, RGBTRIPLE image[height][width])
 // Blur image
 void blur(int height, int width, RGBTRIPLE image[height][width])
 {
+    for (int i = 0; i < height; i++)
+    {
+        for (int j = 0; j < width; j++)
+        {
+            BYTE tl_red = image[i - 1][j - 1].rgbtRed;
+            BYTE tl_green = image[i - 1][j - 1].rgbtGreen;
+            BYTE tl_blue = image[i - 1][j - 1].rgbtBlue;
+
+            BYTE tc_red = image[i - 1][j].rgbtRed;
+            BYTE tc_green = image[i - 1][j].rgbtGreen;
+            BYTE tc_blue = image[i - 1][j].rgbtBlue;
+
+            BYTE tr_red = image[i - 1][j + 1].rgbtRed;
+            BYTE tr_green = image[i - 1][j + 1].rgbtGreen;
+            BYTE tr_blue = image[i - 1][j + 1].rgbtBlue;
+
+            BYTE left_red = image[i][j - 1].rgbtRed;
+            BYTE left_green = image[i][j - 1].rgbtGreen;
+            BYTE left_blue = image[i][j - 1].rgbtBlue;
+
+            BYTE center_red = image[i][j].rgbtRed;
+            BYTE center_green = image[i][j].rgbtGreen;
+            BYTE center_blue = image[i][j].rgbtBlue;
+
+            BYTE right_red = image[i][j + 1].rgbtRed;
+            BYTE right_green = image[i][j + 1].rgbtGreen;
+            BYTE right_blue = image[i][j + 1].rgbtBlue;
+
+            BYTE bl_red = image[i + 1][j - 1].rgbtRed;
+            BYTE bl_green = image[i + 1][j - 1].rgbtGreen;
+            BYTE bl_blue = image[i + 1][j - 1].rgbtBlue;
+
+            BYTE bc_red = image[i + 1][j].rgbtRed;
+            BYTE bc_green = image[i + 1][j].rgbtGreen;
+            BYTE bc_blue = image[i + 1][j].rgbtBlue;
+
+            BYTE br_red = image[i + 1][j + 1].rgbtRed;
+            BYTE br_green = image[i + 1][j + 1].rgbtGreen;
+            BYTE br_blue = image[i + 1][j + 1].rgbtBlue;
+        }
+    }
+
     return;
 }
