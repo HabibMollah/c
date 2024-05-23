@@ -84,41 +84,170 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
     {
         for (int j = 0; j < width; j++)
         {
-            BYTE tl_red = image[i - 1][j - 1].rgbtRed;
-            BYTE tl_green = image[i - 1][j - 1].rgbtGreen;
-            BYTE tl_blue = image[i - 1][j - 1].rgbtBlue;
+            // Top left
+            BYTE tl_red;
+            BYTE tl_green;
+            BYTE tl_blue;
 
-            BYTE tc_red = image[i - 1][j].rgbtRed;
-            BYTE tc_green = image[i - 1][j].rgbtGreen;
-            BYTE tc_blue = image[i - 1][j].rgbtBlue;
+            // Top center
+            BYTE tc_red;
+            BYTE tc_green;
+            BYTE tc_blue;
 
-            BYTE tr_red = image[i - 1][j + 1].rgbtRed;
-            BYTE tr_green = image[i - 1][j + 1].rgbtGreen;
-            BYTE tr_blue = image[i - 1][j + 1].rgbtBlue;
+            // Top right
+            BYTE tr_red;
+            BYTE tr_green;
+            BYTE tr_blue;
 
-            BYTE left_red = image[i][j - 1].rgbtRed;
-            BYTE left_green = image[i][j - 1].rgbtGreen;
-            BYTE left_blue = image[i][j - 1].rgbtBlue;
+            // Left
+            BYTE left_red;
+            BYTE left_green;
+            BYTE left_blue;
 
+            // Center
             BYTE center_red = image[i][j].rgbtRed;
             BYTE center_green = image[i][j].rgbtGreen;
             BYTE center_blue = image[i][j].rgbtBlue;
 
-            BYTE right_red = image[i][j + 1].rgbtRed;
-            BYTE right_green = image[i][j + 1].rgbtGreen;
-            BYTE right_blue = image[i][j + 1].rgbtBlue;
+            // Right
+            BYTE right_red;
+            BYTE right_green;
+            BYTE right_blue;
 
-            BYTE bl_red = image[i + 1][j - 1].rgbtRed;
-            BYTE bl_green = image[i + 1][j - 1].rgbtGreen;
-            BYTE bl_blue = image[i + 1][j - 1].rgbtBlue;
+            // Bottom left
+            BYTE bl_red;
+            BYTE bl_green;
+            BYTE bl_blue;
 
-            BYTE bc_red = image[i + 1][j].rgbtRed;
-            BYTE bc_green = image[i + 1][j].rgbtGreen;
-            BYTE bc_blue = image[i + 1][j].rgbtBlue;
+            // Bottom center
+            BYTE bc_red;
+            BYTE bc_green;
+            BYTE bc_blue;
 
-            BYTE br_red = image[i + 1][j + 1].rgbtRed;
-            BYTE br_green = image[i + 1][j + 1].rgbtGreen;
-            BYTE br_blue = image[i + 1][j + 1].rgbtBlue;
+            // Bottom right
+            BYTE br_red;
+            BYTE br_green;
+            BYTE br_blue;
+
+            // Make sure the pixel exists before assigning
+            if (i != 0 && j != 0)
+            {
+                tl_red = image[i - 1][j - 1].rgbtRed;
+                tl_green = image[i - 1][j - 1].rgbtGreen;
+                tl_blue = image[i - 1][j - 1].rgbtBlue;
+            }
+
+            if (i != 0)
+            {
+                tc_red = image[i - 1][j].rgbtRed;
+                tc_green = image[i - 1][j].rgbtGreen;
+                tc_blue = image[i - 1][j].rgbtBlue;
+            }
+
+            if (i != 0 && j != (width - 1))
+            {
+                tr_red = image[i - 1][j + 1].rgbtRed;
+                tr_green = image[i - 1][j + 1].rgbtGreen;
+                tr_blue = image[i - 1][j + 1].rgbtBlue;
+            }
+
+            if (j != 0)
+            {
+                left_red = image[i][j - 1].rgbtRed;
+                left_green = image[i][j - 1].rgbtGreen;
+                left_blue = image[i][j - 1].rgbtBlue;
+            }
+
+            if (j != (width - 1))
+            {
+                right_red = image[i][j + 1].rgbtRed;
+                right_green = image[i][j + 1].rgbtGreen;
+                right_blue = image[i][j + 1].rgbtBlue;
+            }
+
+            if (i != (height - 1) && j != 0)
+            {
+                bl_red = image[i + 1][j - 1].rgbtRed;
+                bl_green = image[i + 1][j - 1].rgbtGreen;
+                bl_blue = image[i + 1][j - 1].rgbtBlue;
+            }
+
+            if (i != (height - 1))
+            {
+                bc_red = image[i + 1][j].rgbtRed;
+                bc_green = image[i + 1][j].rgbtGreen;
+                bc_blue = image[i + 1][j].rgbtBlue;
+            }
+
+            if (i != (height - 1) && j != (width - 1))
+            {
+                br_red = image[i + 1][j + 1].rgbtRed;
+                br_green = image[i + 1][j + 1].rgbtGreen;
+                br_blue = image[i + 1][j + 1].rgbtBlue;
+            }
+
+            BYTE target_red;
+            BYTE target_green;
+            BYTE target_blue;
+
+            if (i == 0 && j == 0)
+            {
+                target_red = (center_red + right_red + bc_red + br_red) / 4;
+                target_green = (center_green + right_green + bc_green + br_green) / 4;
+                target_blue = (center_blue + right_blue + bc_blue + br_blue) / 4;
+            }
+            else if (i == 0 && j == (width - 1))
+            {
+                target_red = (center_red + left_red + bc_red + bl_red) / 4;
+                target_green = (center_green + left_green + bc_green + bl_green) / 4;
+                target_blue = (center_blue + left_blue + bc_blue + bl_blue) / 4;
+            }
+            else if (i == (height - 1) && j == 0)
+            {
+                target_red = (center_red + right_red + tc_red + tr_red) / 4;
+                target_green = (center_green + right_green + tc_green + tr_green) / 4;
+                target_blue = (center_blue + right_blue + tc_blue + tr_blue) / 4;
+            }
+            else if (i == (height - 1) && j == (width - 1))
+            {
+                target_red = (center_red + left_red + tc_red + tl_red) / 4;
+                target_green = (center_green + left_green + tc_green + tl_green) / 4;
+                target_blue = (center_blue + left_blue + tc_blue + tl_blue) / 4;
+            }
+            else if (i == 0 && j != 0 && j != (width - 1))
+            {
+                target_red = (left_red + center_red + right_red + bl_red + bc_red + br_red) / 6;
+                target_green = (left_green + center_green + right_green + bl_green + bc_green + br_green) / 6;
+                target_blue = (left_blue + center_blue + right_blue + bl_blue + bc_blue + br_blue) / 6;
+            }
+            else if (i == (height - 1) && j != 0 && j != (width - 1))
+            {
+                target_red = (left_red + center_red + right_red + tl_red + tc_red + tr_red) / 6;
+                target_green = (left_green + center_green + right_green + tl_green + tc_green + tr_green) / 6;
+                target_blue = (left_blue + center_blue + right_blue + tl_blue + tc_blue + tr_blue) / 6;
+            }
+            else if (j == 0 && i != 0 && i != (height - 1))
+            {
+                target_red = (tc_red + tr_red + center_red + right_red + bc_red + br_red) / 6;
+                target_green = (tc_green + tr_green + center_green + right_green + bc_green + br_green) / 6;
+                target_blue = (tc_blue + tr_blue + center_blue + right_blue + bc_blue + br_blue) / 6;
+            }
+            else if (j == (width - 1) && i != 0 && i != (height - 1))
+            {
+                target_red = (tl_red + tc_red + center_red + left_red + bc_red + bl_red) / 6;
+                target_green = (tl_green + tc_green + center_green + left_green + bc_green + bl_green) / 6;
+                target_blue = (tl_blue + tc_blue + center_blue + left_blue + bc_blue + bl_blue) / 6;
+            }
+            else
+            {
+                target_red = (tl_red + tc_red + tr_red + left_red + center_red + right_red + bl_red + bc_red + br_red) / 9;
+                target_green = (tl_green + tc_green + tr_green + left_green + center_green + right_green + bl_green + bc_green + br_green) / 9;
+                target_blue = (tl_blue + tc_blue + tr_blue + left_blue + center_blue + right_blue + bl_blue + bc_blue + br_blue) / 9;
+            }
+
+            image[i][j].rgbtRed = target_red;
+            image[i][j].rgbtGreen = target_green;
+            image[i][j].rgbtBlue = target_blue;
         }
     }
 
