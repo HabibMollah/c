@@ -217,32 +217,45 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
             else if (i == 0 && j != 0 && j != (width - 1))
             {
                 target_red = (left_red + center_red + right_red + bl_red + bc_red + br_red) / 6;
-                target_green = (left_green + center_green + right_green + bl_green + bc_green + br_green) / 6;
-                target_blue = (left_blue + center_blue + right_blue + bl_blue + bc_blue + br_blue) / 6;
+                target_green =
+                    (left_green + center_green + right_green + bl_green + bc_green + br_green) / 6;
+                target_blue =
+                    (left_blue + center_blue + right_blue + bl_blue + bc_blue + br_blue) / 6;
             }
             else if (i == (height - 1) && j != 0 && j != (width - 1))
             {
                 target_red = (left_red + center_red + right_red + tl_red + tc_red + tr_red) / 6;
-                target_green = (left_green + center_green + right_green + tl_green + tc_green + tr_green) / 6;
-                target_blue = (left_blue + center_blue + right_blue + tl_blue + tc_blue + tr_blue) / 6;
+                target_green =
+                    (left_green + center_green + right_green + tl_green + tc_green + tr_green) / 6;
+                target_blue =
+                    (left_blue + center_blue + right_blue + tl_blue + tc_blue + tr_blue) / 6;
             }
             else if (j == 0 && i != 0 && i != (height - 1))
             {
                 target_red = (tc_red + tr_red + center_red + right_red + bc_red + br_red) / 6;
-                target_green = (tc_green + tr_green + center_green + right_green + bc_green + br_green) / 6;
-                target_blue = (tc_blue + tr_blue + center_blue + right_blue + bc_blue + br_blue) / 6;
+                target_green =
+                    (tc_green + tr_green + center_green + right_green + bc_green + br_green) / 6;
+                target_blue =
+                    (tc_blue + tr_blue + center_blue + right_blue + bc_blue + br_blue) / 6;
             }
             else if (j == (width - 1) && i != 0 && i != (height - 1))
             {
                 target_red = (tl_red + tc_red + center_red + left_red + bc_red + bl_red) / 6;
-                target_green = (tl_green + tc_green + center_green + left_green + bc_green + bl_green) / 6;
+                target_green =
+                    (tl_green + tc_green + center_green + left_green + bc_green + bl_green) / 6;
                 target_blue = (tl_blue + tc_blue + center_blue + left_blue + bc_blue + bl_blue) / 6;
             }
             else
             {
-                target_red = (tl_red + tc_red + tr_red + left_red + center_red + right_red + bl_red + bc_red + br_red) / 9;
-                target_green = (tl_green + tc_green + tr_green + left_green + center_green + right_green + bl_green + bc_green + br_green) / 9;
-                target_blue = (tl_blue + tc_blue + tr_blue + left_blue + center_blue + right_blue + bl_blue + bc_blue + br_blue) / 9;
+                target_red = (tl_red + tc_red + tr_red + left_red + center_red + right_red +
+                              bl_red + bc_red + br_red) /
+                             9;
+                target_green = (tl_green + tc_green + tr_green + left_green + center_green +
+                                right_green + bl_green + bc_green + br_green) /
+                               9;
+                target_blue = (tl_blue + tc_blue + tr_blue + left_blue + center_blue + right_blue +
+                               bl_blue + bc_blue + br_blue) /
+                              9;
             }
 
             image[i][j].rgbtRed = target_red;
