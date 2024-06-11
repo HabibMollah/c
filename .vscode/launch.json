@@ -6,7 +6,7 @@
       "type": "cppdbg", // Type of debugger to use
       "request": "launch",
       "program": "${workspaceFolder}/${fileBasenameNoExtension}", // Executable program to debug
-      "args": ["plates.txt"], // Command line arguments
+      "args": ["1", "2", "3", "4", "5"], // Command line arguments
       "stopAtEntry": false, // Stop execution after launch
       "cwd": "${workspaceFolder}", // Current working directory
       "environment": [],

@@ -8,7 +8,7 @@
       "args": [
         "-g", // Include debug symbols
         "${fileBasename}", // Source file(s)
-        "cs50.c",
+        // "cs50.c",
         "-o", // Output file
         "${fileBasenameNoExtension}" // Output file name
       ],
