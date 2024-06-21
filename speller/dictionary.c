@@ -2,8 +2,11 @@
 
 #include <ctype.h>
 #include <stdbool.h>
+#include <stdio.h>
 
 #include "dictionary.h"
+
+FILE *dict_file = NULL;
 
 // Represents a node in a hash table
 typedef struct node
@@ -22,7 +25,7 @@ node *table[N];
 bool check(const char *word)
 {
     // TODO
-    return false;
+    return true;
 }
 
 // Hashes word to a number
@@ -36,6 +39,9 @@ unsigned int hash(const char *word)
 bool load(const char *dictionary)
 {
     // TODO
+    dict_file = fopen(dictionary, "r");
+    if (dict_file != NULL)
+        return true;
     return false;
 }
 
