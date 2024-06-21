@@ -49,6 +49,18 @@ bool load(const char *dictionary)
 unsigned int size(void)
 {
     // TODO
+    if (dict_file != NULL)
+    {
+        unsigned int count = 0;
+        char buffer;
+
+        while (fread(&buffer, sizeof(char), 1, dict_file))
+        {
+            if (buffer == '\n')
+                count++;
+        }
+        return count;
+    }
     return 0;
 }
 
