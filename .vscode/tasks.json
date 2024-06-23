@@ -4,14 +4,8 @@
     {
       "type": "shell",
       "label": "build",
-      "command": "gcc",
-      "args": [
-        "-g", // Include debug symbols
-        "${workspaceFolder}/inheritance/${fileBasename}", // Source file(s)
-        // "cs50.c",
-        "-o", // Output file
-        "${workspaceFolder}/inheritance/${fileBasenameNoExtension}" // Output file name
-      ],
+      "command": "make",
+      "args": [],
       "group": {
         "kind": "build",
         "isDefault": true

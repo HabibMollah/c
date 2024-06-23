@@ -2,7 +2,10 @@
 
 #include <ctype.h>
 #include <stdbool.h>
+#include <stdlib.h>
 #include <stdio.h>
+#include <string.h>
+#include <strings.h>
 
 #include "dictionary.h"
 
@@ -28,14 +31,18 @@ bool check(const char *word)
     // TODO
     unsigned int idx = hash(word);
     node *ptr = table[idx];
+
+    if (ptr == NULL)
+        return false;
+
     while (ptr != NULL)
     {
-        if (ptr->word == word)
+        if (strcasecmp(ptr->word, word) == 0)
             return true;
         ptr = ptr->next;
     }
 
-    return true;
+    return false;
 }
 
 // Hashes word to a number
@@ -62,6 +69,29 @@ bool load(const char *dictionary)
                 word_buffer[idx] = '\0';
                 word_count++;
                 idx = 0;
+
+                // Create a new node for the word
+                node *new_node = malloc(sizeof(node));
+                strcpy(new_node->word, word_buffer);
+                new_node->next = NULL;
+
+                // Go the the last node and append the node after that
+                unsigned int hash_num = hash(word_buffer);
+                node *ptr = table[hash_num];
+
+                if (ptr == NULL)
+                {
+                    table[hash_num] = new_node;
+                    ptr = new_node;
+                }
+                else
+                {
+                    while (ptr->next != NULL)
+                    {
+                        ptr = ptr->next;
+                    }
+                    ptr->next = new_node;
+                }
             }
             else
             {

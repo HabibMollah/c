@@ -5,8 +5,11 @@
       "name": "(lldb) Launch", // Configuration name
       "type": "cppdbg", // Type of debugger to use
       "request": "launch",
-      "program": "${workspaceFolder}/inheritance/${fileBasenameNoExtension}", // Executable program to debug
-      "args": [], // Command line arguments
+      "program": "${workspaceFolder}/speller/speller", // Executable program to debug
+      "args": [
+        "${workspaceFolder}/speller/dictionaries/small",
+        "${workspaceFolder}/speller/texts/cat.txt"
+      ], // Command line arguments
       "stopAtEntry": false, // Stop execution after launch
       "cwd": "${workspaceFolder}", // Current working directory
       "environment": [],
