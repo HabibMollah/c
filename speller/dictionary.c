@@ -2,8 +2,8 @@
 
 #include <ctype.h>
 #include <stdbool.h>
-#include <stdlib.h>
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 #include <strings.h>
 
@@ -117,5 +117,20 @@ unsigned int size(void)
 bool unload(void)
 {
     // TODO
+    fclose(dict_file);
+    for (int i = 0; i < N; i++)
+    {
+        node *ptr = table[i];
+        if (ptr != NULL)
+        {
+            while (ptr->next != NULL)
+            {
+                node *next = ptr->next;
+                free(ptr);
+                ptr = next;
+            }
+            free(ptr);
+        }
+    }
     return true;
 }
